@@ -27,8 +27,7 @@ return view('products.create');
 /**
 * Store a newly created resource in storage.
 */
-public function store(StoreProductRequest $request) :
-RedirectResponse
+public function store(StoreProductRequest $request) :RedirectResponse
 {
 Product::create($request->validated());
 return redirect()->route('products.index')
