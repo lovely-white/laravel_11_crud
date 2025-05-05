@@ -25,7 +25,7 @@
     
     <button type="submit" class="btn btn-primary mt-3">Register</button>
     <br>
-    <a href="{{ route('login.index') }}">Already have an account? Login here</a>
+    <a href="{{ route('login') }}">Already have an account? Login here</a>
 </form>
 
 @endsection

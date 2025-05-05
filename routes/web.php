@@ -13,11 +13,11 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('products', ProductController::class);
 });
 
-// Authentication Routes
+
 Route::get('/register', [RegisterController::class, 'index'])->name('register.index');
 Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
 
-// Define the login route with the correct name
+
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store'])->name('login.store');
 Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
