@@ -23,13 +23,22 @@ return view('products.index', [
 public function create() : View
 {
 return view('products.create');
+
 }
 /**
 * Store a newly created resource in storage.
 */
 public function store(StoreProductRequest $request) :RedirectResponse
 {
-Product::create($request->validated());
+ $data = $request->validated();
+
+    
+    if ($request->hasFile('image')) {
+        $imagePath = $request->file('image')->store('images', 'public');
+        $data['image'] = $imagePath;
+    }
+
+    Product::create($data);
 return redirect()->route('products.index')
 ->withSuccess('New product is added successfully.');
 }
@@ -53,8 +62,20 @@ return view('products.edit', compact('product'));
 public function update(UpdateProductRequest $request, Product
 $product) : RedirectResponse
 {
-$product->update($request->validated());
-return redirect()->back()
+$data = $request->validated();
+
+   
+    if ($request->hasFile('image')) {
+        
+        $imagePath = $request->file('image')->store('images', 'public');
+        $data['image'] = $imagePath;
+    } else {
+        
+        $data['image'] = $product->image;
+    }
+
+    $product->update($data);
+return redirect()->route('products.index')
 ->withSuccess('Product is updated successfully.');
 
 }

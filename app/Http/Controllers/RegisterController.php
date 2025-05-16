@@ -45,7 +45,7 @@ class RegisterController extends Controller
             'password' => Hash::make($validated['password']),
         ]);
  
-        return redirect()->route('login.index')
+        return redirect()->route('login')
             ->withSuccess('Registration successful! Please login.');
     }
 
